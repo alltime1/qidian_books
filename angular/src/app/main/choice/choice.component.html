@@ -1,0 +1,86 @@
+<div class="back">
+  <div class="switch">
+    <li *ngFor="let item of chooseList">
+      <p (click)="curItem = item" [ngClass]="{
+      'choosed':curItem==item
+    }" [ngStyle]="{
+      'color':curItem==item ? 'red':'#000'
+    }">{{item}}</p>
+    </li>
+    <img src="http://1.116.252.29/search.png" alt="" srcset="">
+  </div>
+  <div class="classify">
+    <div *ngFor="let item of classifyList">
+      <img [src]="item.icon" alt="">
+      <span>{{item.name}}</span>
+    </div>
+  </div>
+
+  <div class="choiceList choiceLists" *ngFor="let item of choiceList">
+    <div class="header">
+      <p>
+        {{item.til.slice(0,-1)}}
+        <span>
+          {{item.til.slice(-1)}}
+        </span>
+
+      </p>
+      <div class="more">
+        <span>更多</span>
+        <svg class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+          viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="505">
+          <path
+            d="M857.70558 495.009024 397.943314 27.513634c-7.132444-7.251148-18.794042-7.350408-26.048259-0.216941-7.253194 7.132444-7.350408 18.795065-0.216941 26.048259l446.952518 454.470749L365.856525 960.591855c-7.192819 7.192819-7.192819 18.85544 0 26.048259 3.596921 3.596921 8.311293 5.39487 13.024641 5.39487s9.42772-1.798972 13.024641-5.39487L857.596086 520.949836C864.747973 513.797949 864.796068 502.219239 857.70558 495.009024z"
+            p-id="506"></path>
+        </svg>
+      </div>
+    </div>
+    <app-book-show [booksList]="item.data"></app-book-show>
+  </div>
+
+
+  <div class="choiceList" *ngFor="let item of choiceList">
+    <div class="header">
+      <p>
+        主编力荐
+
+
+      </p>
+      <div class="more">
+        <span>更多</span>
+        <svg class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+          viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="505">
+          <path
+            d="M857.70558 495.009024 397.943314 27.513634c-7.132444-7.251148-18.794042-7.350408-26.048259-0.216941-7.253194 7.132444-7.350408 18.795065-0.216941 26.048259l446.952518 454.470749L365.856525 960.591855c-7.192819 7.192819-7.192819 18.85544 0 26.048259 3.596921 3.596921 8.311293 5.39487 13.024641 5.39487s9.42772-1.798972 13.024641-5.39487L857.596086 520.949836C864.747973 513.797949 864.796068 502.219239 857.70558 495.009024z"
+            p-id="506"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="tuijian">
+      <div class="message" [ngClass]="{
+        messageAnima:lijianDataIndex == i
+      }" *ngFor="let item of lijianData let i = index" 
+     >
+        <p>{{item.zbSay}} <span class="say">——主编说</span></p>
+        <p>{{item.name}}</p>
+        <div class="line">
+          <p>
+              {{item.typeName}}·{{item.wordNum}}字
+          </p>
+        
+          <span>
+            {{item.littleType.split(",")[0]}}
+          </span>
+          <span>
+            {{item.littleType.split(",")[1]}}
+          </span>
+        </div>
+        <div class="iconlist" >
+            <img [src]="item" *ngFor="let item of allIconLijian" alt="">   
+        </div>
+        <img [src]="item.icon" alt="">
+      </div>
+
+    </div>
+  </div>
+</div>

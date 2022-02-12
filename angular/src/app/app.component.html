@@ -1,0 +1,5 @@
+<!-- <router-outlet></router-outlet> -->
+<app-bookshelf *ngIf="curIndex == 0 "></app-bookshelf>
+<app-choice *ngIf="curIndex == 1 "></app-choice>
+<app-nav-bar (barIndex)="switchs($event)"></app-nav-bar>
+

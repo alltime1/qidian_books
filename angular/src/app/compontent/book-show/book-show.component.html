@@ -1,0 +1,57 @@
+<div class="all">
+  <div class="one_book" *ngFor="let item of booksList">
+    <img src="{{item.icon}}" alt="" srcset="">
+    <div class="book_detail">
+      <p>
+        {{item.name}}
+      </p>
+      
+      <span *ngIf="item.introduce" class="line2" >
+      {{item.introduce}}
+      </span>
+
+    
+      <!-- littleType :"无敌,无敌流,轻松" -->
+
+      <div *ngIf="item.typeName" style="display: flex;
+      align-items: center;justify-content: space-between;">
+      <div class="lef">
+          {{item.typeName}} <span *ngIf="item.wordNum">
+          · {{item.wordNum}}字 
+        </span>
+      </div>
+      
+        <div style="display: flex;align-items: center;">
+            <div class="tap1">
+         <span>
+           起
+         </span>
+         
+         <span>
+           {{item.littleType.split(",")[0]}}
+         </span>
+        </div>
+        <div class="tap2">
+          {{item.littleType.split(",")[1]}}
+        </div>
+        <div class="tap2">
+          {{item.littleType.split(",")[2]}}
+        </div>
+        </div>
+      
+      </div>
+      <span *ngIf="item.author">
+        {{item.author}} <span *ngIf="item.newRead">
+          · {{item.newRead}}章未读
+        </span>
+      </span>
+      <p *ngIf="item.status">
+        <span>{{item.status==0?"连载中":"完本"}} · {{item.title}}
+        </span>
+      </p>
+    </div>
+    <img *ngIf="item.status" src="http://1.116.252.29/more2.png" alt="" class="more">
+  </div>
+
+
+</div>
