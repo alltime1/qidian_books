@@ -22,7 +22,12 @@
           </svg>
         </div>
       </div>
-      <div class="oneBook" @click="enterBook(item.id)" v-for="(item,index)  in  choiceList" :key="'choice'+index">
+      <div
+        class="oneBook"
+        @click="enterBook(item.id)"
+        v-for="(item,index)  in  choiceList"
+        :key="'choice'+index"
+      >
         <div class="posi">
           <img :src="item.icon" alt />
         </div>
@@ -126,8 +131,8 @@ import {
   onBeforeUnmount,
   withDefaults
 } from "vue";
-import { useRouter } from "vue-router"
-import {routerPush} from "../../mixin/index"
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 interface choiceList {
   icon: string;
 }
@@ -143,7 +148,6 @@ export default defineComponent({
     }
   },
   setup(props) {
-    
     const opacityImg = ref("opacityImg");
     const showCurrent = ref(0);
     let newsPicPosi = ref([]);
@@ -152,82 +156,81 @@ export default defineComponent({
     //   newsPicPosi = currentPosi(props.choiceList, showCurrent.value);
     //   return setTimeout(()=>{currentPosi(newsPicPosi, 0);},2000)
     // })
-    let enterBook=(i)=>{
-      // console.log(i);
-      
-      // routers.push({path:"/detail",query:{
-      //   bookId:i
-      // }})
-      routerPush({path:"/detail",query:{
-         bookId:i
-      }})
+    let store = useStore();
+
+    let enterBook = i => {
+      store.dispatch("changeFadeWay", "fadeEnter");
+      routers.push({
+        path: "/detail",
+        query: {
+          bookId: i
+        }
+      });
     };
     let newArr: Ref<Array<string>> = ref([]);
     // // onUpdated(() => {
     let lastIcons: Ref<Array<{
       icon: string;
     }>> = ref([]);
-        let time,time2,time3;
+    let time, time2, time3;
     const startRun = function() {
       time3 = setInterval(() => {
         currentPosi(lastIcons.value, 0);
       }, 2000);
 
-       time = setInterval(() => {
+      time = setInterval(() => {
         opacityImg.value = "opacityImg";
         if (showCurrent.value < 2) {
           showCurrent.value += 1;
-          
         } else {
           showCurrent.value = 0;
         }
         // currentPosi(props.choiceList, showCurrent.value);
       }, 2000);
-       time2 = setInterval(() => {
+      time2 = setInterval(() => {
         opacityImg.value = "";
       }, 1800);
     };
-    if( props.choiceList.length>0){
-          newArr.value=[]
-        // lastIcons.value = data;
-        let reserveArr: choiceList[] = props.choiceList;
-       let arr:Array<any> =[];
-        reserveArr.forEach(e => {
-          newArr.value.unshift(e.icon);
-          arr.unshift({icon:e.icon})
-        });
-         lastIcons.value = arr;
-        //  console.log(lastIcons.value );
+    if (props.choiceList.length > 0) {
+      newArr.value = [];
+      // lastIcons.value = data;
+      let reserveArr: choiceList[] = props.choiceList;
+      let arr: Array<any> = [];
+      reserveArr.forEach(e => {
+        newArr.value.unshift(e.icon);
+        arr.unshift({ icon: e.icon });
+      });
+      lastIcons.value = arr;
+      //  console.log(lastIcons.value );
+      clearInterval(time);
+      clearInterval(time2);
+      clearInterval(time3);
+      // currentPosi(reserveArr, 0);
+      // newArr.value = reserveArr
+      startRun();
+    } else {
+      watch(
+        () => props.choiceList,
+        data => {
+          newArr.value = [];
+          // lastIcons.value = data;
+          let reserveArr: choiceList[] = data;
+          let arr: Array<any> = [];
+          reserveArr.forEach(e => {
+            newArr.value.unshift(e.icon);
+            arr.unshift({ icon: e.icon });
+          });
+          lastIcons.value = arr;
+          //  console.log(lastIcons.value );
           clearInterval(time);
           clearInterval(time2);
           clearInterval(time3);
-        // currentPosi(reserveArr, 0);
-        // newArr.value = reserveArr
-        startRun();
-    }else{
-    watch(
-      () => props.choiceList,
-      data => {
-        newArr.value=[]
-        // lastIcons.value = data;
-        let reserveArr: choiceList[] = data;
-       let arr:Array<any> =[];
-        reserveArr.forEach(e => {
-          newArr.value.unshift(e.icon);
-          arr.unshift({icon:e.icon})
-        });
-         lastIcons.value = arr;
-        //  console.log(lastIcons.value );
-          clearInterval(time);
-          clearInterval(time2);
-          clearInterval(time3);
-        // currentPosi(reserveArr, 0);
-        // newArr.value = reserveArr
-        startRun();
-      }
-    );
+          // currentPosi(reserveArr, 0);
+          // newArr.value = reserveArr
+          startRun();
+        }
+      );
     }
-
 
     //  watch:{
     //    'props.choiceList' : ()=>{
@@ -241,17 +244,16 @@ export default defineComponent({
       }>,
       index: Number
     ): void => {
-      
-      // 0           1                2 
-      // 0 1 2  =>           =>   
-      // 2 1 0      0 2 1            1 0 2 
+      // 0           1                2
+      // 0 1 2  =>           =>
+      // 2 1 0      0 2 1            1 0 2
 
-          // 2 0 1
+      // 2 0 1
       newArr.value = [];
       arr.forEach(element => {
         newArr.value.push(element.icon);
       });
- 
+
       let lastIcon = newArr.value[newArr.value.length - 1];
       newArr.value.pop();
       newArr.value.unshift(lastIcon);

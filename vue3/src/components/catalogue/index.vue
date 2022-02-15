@@ -18,12 +18,10 @@
     </van-nav-bar>
     <div class="content">
       <van-sticky>
-      <p class="content_top">正文卷</p>
+        <p class="content_top">正文卷</p>
       </van-sticky>
-      <ul >
-        <li @click="look" v-for="(item,index) in catalogueList" :key="index">
-           {{item}}
-        </li>
+      <ul>
+        <li @click="look(index)" v-for="(item,index) in catalogueList" :key="index">{{item}}</li>
       </ul>
     </div>
   </div>
@@ -42,31 +40,13 @@ export default defineComponent({
   },
   setup(props) {
     console.log(props.hidden);
-    const List = [
-      [
-        "第1章开局就要被杀",
-        "第2章李佑要搏",
-        "第3章冲天燕",
-        "第4章麻翻三人",
-        "第5章自贬庶民",
-        "第6章学生跪老师",
-        "第7章李佑的浪子回头",
-        "第8章悯农出场",
-        "第9章李世民宠子狂魔",
-        "第10章远离阴弘智",
-        "第11章到达长安",
-        "第12章不愿被赐死",
-        "第13章摆脱赐死",
-        "第14章长安西市",
-        "第15章再遇冲天燕",
-        "第16章收留李佑",
-        "第17章羊肉串大卖",
-        "第18章文德之影李明达",
-        "第19章树欲静风不止",
-        "第20章燕家兄妹"
-      ]
-    ];
-    let catalogueList= List[0];
+    const List:Array<string> = [];
+    let randomData:number = 200 * +Math.random().toFixed(2);
+    for (let i = 1; i < +randomData; i++) {
+      List.push(`第${i}章`);
+    }
+
+    let catalogueList = List;
     let store = useStore();
     let router = useRouter();
     const active = ref(0);
@@ -76,11 +56,12 @@ export default defineComponent({
       // router.go(-1);
       props.hidden(false);
     };
-    const look = ()=>{
-       props.hidden(false,'looking');
-    }
+    const look = i => {
+      props.hidden(false, i + 1 + "");
+    };
     return {
-      back,catalogueList,
+      back,
+      catalogueList,
       active,
       look
     };
@@ -97,11 +78,11 @@ export default defineComponent({
   color: rgb(126, 126, 126);
   padding: 5px 20px;
 }
-.content ul{
-  margin-top: 4px; 
+.content ul {
+  margin-top: 4px;
   padding: 10px 4vw;
 }
-.content ul li{
+.content ul li {
   margin: 10px 0;
 }
 </style>
