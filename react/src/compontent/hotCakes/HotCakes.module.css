@@ -1,0 +1,118 @@
+.all{
+  background-color: #fff;
+  border-radius: 10px;
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:4px 10px;
+  margin-bottom: 3px;
+  position: relative;
+}
+.header::after{
+  content: "";
+  position: absolute;
+  left: 0;top: 0;
+  background: linear-gradient(150deg,rgb(240, 28, 28),rgb(255, 255, 255));
+  width: 84px;
+  height: 37px;
+  opacity: .4;
+  border-radius: 0 0 40px 0 ;
+}
+.header .more{
+  display: flex;
+  align-items: center;
+  border: 1px solid #000;
+  padding: 1px 7px;
+  border-radius: 17px;
+  padding-left: 9px;
+  font-size: 12px;
+  
+}
+.header .more svg{
+  width: 12px;
+  margin-left: 1px;
+  height: 12px;
+}
+.header p{
+  font-size: 18px;
+  font-weight: 500;
+  
+}
+.header p span{
+  background:linear-gradient(-3deg,rgb(240, 28, 28),rgb(255, 255, 255));
+  color: transparent;
+  -webkit-background-clip: text;
+}
+.content{
+  display: flex;
+  align-items: center;
+  padding:0 20px;
+
+}
+.content .detail {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 ;
+  justify-content: space-between;
+  height: 88px;  width: calc(100% - 80px);
+  margin-left: 6px;
+
+}
+.content .detail span{
+   font-size: 12px;
+   opacity: .8;
+   line-height: 20px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient:vertical; -webkit-line-clamp:2;
+   width: 100%;
+}
+.content img{
+  margin-right: 1vw;
+  height: 88px;
+  min-width:60px;
+  object-fit: cover;
+
+}
+.content .classify{
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+.content .classify2 .classify2_first{
+  display: flex;
+  align-items: center;
+}
+.classify2{
+  display: flex;
+  align-items: center;
+
+}
+.classify2_first p{
+  font-size: 12px;
+  transform: scale(.7);
+  color: rgb(245, 25, 25);
+  font-weight: 500;
+  background-color: rgb(255, 189, 189);
+  margin-left: -4px;
+  padding-left: 4px;
+}
+.classify2_first div{
+  padding:1px;
+  border-radius: 6px;
+  background-color: red;
+  color: #fff;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+}
+.classify2 .classify2_o{
+  transform: scale(.7);
+
+}

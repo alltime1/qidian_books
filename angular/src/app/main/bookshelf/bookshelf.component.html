@@ -11,24 +11,17 @@
       <!-- [attr.r]="scrollLong*15/210" -->
       <div class="loading_anima" *ngIf="scrollLong>0">
         <svg width="30" height="30" fill="green">
-           <!--  -->
+          <!--  -->
 
-           <circle cx="15" [attr.cy]="15"
-           stroke-width="6"
-           stroke="rgb(255, 170, 170)"
-           [attr.r]="scrollLong*7.5/100<7.5?scrollLong*7.5/100 :7.5"
-        ></circle>
+          <circle cx="15" [attr.cy]="15" stroke-width="6" stroke="rgb(255, 170, 170)"
+            [attr.r]="scrollLong*7.5/100<7.5?scrollLong*7.5/100 :7.5"></circle>
 
           <circle cx="15" [attr.cy]="15"
-          [attr.stroke-dasharray]="scrollLong>100? 47-(scrollLong-100)*47/50 +' '+ (scrollLong-100)*47/50 : ''"
-          [attr.stroke-dashoffset]="scrollLong>100? 11 + (47-(scrollLong-100)*47/50)/2 : ''"
-          stroke-width="6"
-          stroke="red"
- 
-          [attr.r]="scrollLong*7.5/100<7.5?scrollLong*7.5/100 :7.5"
-          fill="red"></circle>
+            [attr.stroke-dasharray]="scrollLong>100? 47-(scrollLong-100)*47/50 +' '+ (scrollLong-100)*47/50 : ''"
+            [attr.stroke-dashoffset]="scrollLong>100? 11 + (47-(scrollLong-100)*47/50)/2 : ''" stroke-width="6"
+            stroke="red" [attr.r]="scrollLong*7.5/100<7.5?scrollLong*7.5/100 :7.5" fill="red"></circle>
           <circle cx="15" [attr.cy]="15" [attr.r]="scrollLong<90?scrollLong*10/210-2: 7" fill="rgb(253, 201, 201)">
-          
+
           </circle>
           <!-- <path [attr.d]="M 15,15 A 15,15,0,1,1, "> </path> -->
         </svg>

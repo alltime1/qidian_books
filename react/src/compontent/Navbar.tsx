@@ -3,11 +3,11 @@ import { useState } from 'react';
 interface propsBar {
   icon: string,
   name: string,
-  [key:string]:string,
+  [key: string]: string,
 }
 interface propsAll {
   barItem: propsBar[],
-  changeBar:Function
+  changeBar: Function
 }
 function Navbar(props: propsAll) {
   const [currentIndex, setcurrentIndex] = useState(0)
@@ -17,12 +17,12 @@ function Navbar(props: propsAll) {
   }
   return (
     <div style={{
-      position:"absolute",
-      left:0,
-      bottom:0,
-      width:"100%",
-      background:"#fff",
-      zIndex:100
+      position: "absolute",
+      left: 0,
+      bottom: 0,
+      width: "100%",
+      background: "#fff",
+      zIndex: 100
     }}>
       <ul style={{
         display: "flex",
@@ -40,16 +40,16 @@ function Navbar(props: propsAll) {
                   alignItems: "center"
 
                 }}>
-              <img 
-              style={{
-                color: currentIndex == i ? "red" : "#000"
-              }} 
-              src={
-                element["icon"+ (currentIndex == i ? "_choose":"")]
-              
-              }
-                
-                />
+              <img
+                style={{
+                  color: currentIndex == i ? "red" : "#000"
+                }}
+                src={
+                  element["icon" + (currentIndex == i ? "_choose" : "")]
+
+                }
+
+              />
               <div style={{
                 marginTop: ".1rem",
                 color: currentIndex == i ? "red" : "#000"

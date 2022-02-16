@@ -1,11 +1,30 @@
+.all{
+    background: "#ffe4e1";
+    height: 100vh;
+    overflow: hidden;
+}
 header{
   display: flex;
-  padding: .2rem;
   height: 50px;
+}
+.hidden{
+  perspective: 140px;
+}
+.hidden .background{
+  background: url('../../../static/image/IMG_20220201_154900.jpg') no-repeat;
+  transform: translateZ(0px);
+  background-size: cover;
+  width: 100vw;
+  transform-origin:70% 50%;
 }
 .book_l{
   display: flex;
   align-items: center;
+  position: absolute;
+  left: 0;top: 0;
+  height: 50px;
+  padding: 20px;
+  box-sizing: border-box;
   width: 100%;
 }
 .book_l img{
@@ -48,7 +67,7 @@ header{
 .tip p{
   margin-left: .2rem;
   font-size: 14px;
-  color: rgb(92, 91, 91);
+  color: #fff;
 }
 .canlender{
   position: relative;
@@ -86,3 +105,20 @@ header{
   margin-top: 40px;
   margin-bottom: 10px;
 }
+.loading_anima{
+  position: absolute;
+  z-index: 100;
+  top: 68px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.loading_anima   p{
+color: #ffffff;
+font-size: 12px;
+white-space: nowrap;
+text-align: center}

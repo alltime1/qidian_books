@@ -42,8 +42,9 @@
 }
 .content_scroll{
   width: 100%;
+  height: 100vh;
   display: flex;
-  transition: transform .2s linear;
+  transition: transform .1s ease;
 }
 .svg_anima{
   position: absolute;
